@@ -13,7 +13,7 @@ $(document).ready(function () {
     var calendar = $('#calendar').fullCalendar({
         editable: true,
         events: "fetch-event.php",
-        displayEventTime: false,
+        displayEventTime: true,
         eventRender: function (event, element, view) {
             if (event.allDay === 'true') {
                 event.allDay = true;
@@ -50,7 +50,7 @@ $(document).ready(function () {
             }
             calendar.fullCalendar('unselect');
         },
-        
+
         editable: true,
         eventDrop: function (event, delta) {
                     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
