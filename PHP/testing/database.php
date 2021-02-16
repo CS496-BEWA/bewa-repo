@@ -1,6 +1,6 @@
 <?php
 
-$conn = mysqli_connect("localhost","496","root","") ;
+$conn = mysqli_connect("localhost","root","","496") ;
 
 if (!$conn)
 {
