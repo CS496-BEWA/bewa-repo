@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Calandar</title>
-    
+    <title>Calendar</title>
+
     <link href='<?=$dir;?>packages/core/main.css' rel='stylesheet' />
     <link href='<?=$dir;?>packages/daygrid/main.css' rel='stylesheet' />
     <link href='<?=$dir;?>packages/timegrid/main.css' rel='stylesheet' />
@@ -87,7 +87,7 @@
 
                     </div>
 
-                    
+
 
                 </div>
 
@@ -182,8 +182,7 @@
 
 <div class="container">
 
-    <p><br>Read the full <a href="https://demos.dcblog.dev/Jquery-fullcalendar-with-php-and-mysql/">jQuery Fullcalender with PHP and MySQL</a> Tutorial</p>
-
+  
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addeventmodal">
       Add Event
     </button>
