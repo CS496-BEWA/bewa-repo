@@ -34,6 +34,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
           <div class="navbar-nav">
             <?php echo "<p class=\"nav-link\">Hello ".htmlspecialchars($_SESSION["username"])."</p>"    ; ?>
             <a class="nav-link" href="logout.php">Log Out</a>
+            <a class="nav-link" href="reset-password.php">Change Password</a>
           </div>
 
 
