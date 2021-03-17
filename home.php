@@ -24,13 +24,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link" href="PHP/testing4/testing5/index.php">Calendar</a>
+            <a class="nav-link" href="PHPTesting/testing4/testing5/index.php">Calendar</a>
           </div>
         </div>
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
+
+
+
           <div class="navbar-nav">
-            <a class="nav-link" href="login2.php">Log In</a>
+            <?php echo "<p class=\"nav-link\">Hello ".htmlspecialchars($_SESSION["username"])."</p>"    ; ?>
+            <a class="nav-link" href="logout.php">Log Out</a>
           </div>
+
+
+
+
         </div>
     </nav>
 
