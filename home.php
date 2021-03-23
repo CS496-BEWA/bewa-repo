@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login2.php");
+    header("location: login3.php");
     exit;
 }
 ?>
@@ -33,8 +33,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
           <div class="navbar-nav">
             <?php echo "<p class=\"nav-link\">Hello ".htmlspecialchars($_SESSION["username"])."</p>"    ; ?>
-            <a class="nav-link" href="logout.php">Log Out</a>
-            <a class="nav-link" href="reset-password.php">Change Password</a>
+            <a class="nav-link" href="logout2.php">Log Out</a>
+            <a class="nav-link" href="reset-password2.php">Change Password</a>
           </div>
 
 
