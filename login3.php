@@ -104,7 +104,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <span class="navbar-toggler-icon"></span>
           </button>
     </nav>
-    
+
     <br><br><br><br>
 
     <div class="mx-auto fs-2 fw-bolder mb-4 " style="width: 400px;">
@@ -132,7 +132,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             <div class="mx-auto fw-light text-muted" style="width: 400px;">
                 <p>Don't have an account? <a href="register2.php">Sign up now</a>.</p>
-                <p>Forgot your password? <a href="reset-password2.php">Reset Password</a>.</p>
             </div>
         </form>
     </div>
