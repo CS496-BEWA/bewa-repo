@@ -74,6 +74,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
           <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FChicago&amp;src=YmV3YXByb2plY3RAZ21haWwuY29t&amp;color=%23039BE5" style="border:solid 1px #777" width="980" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
         <div class="col border border-primary">
+          
           <div class="col-sm h5">
             Announcement Feed
           </div>

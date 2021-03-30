@@ -1,3 +1,4 @@
+<?php/*
 if(!isset($update)){
 $link = @mysql_connect(localhost, username, password);
 if(!$link){
@@ -15,8 +16,18 @@ if(!$result){
    echo('Error selecting news item: ' . $mysql_error());
    exit();
 }
-mysql_fetch_object($result);
+mysql_fetch_object($result);*/
+require "includes/dbh.inc.php";
 ?>
+
+<?php
+
+
+ ?>
+
+
+
+
 <form name="form1" method="post" action="edit.php?a=edit&id=<? echo($id) ?>&update=1">
   <table width="50%" border="0" cellspacing="0" cellpadding="0">
     <tr>
@@ -47,5 +58,6 @@ mysql_fetch_object($result);
     </tr>
   </table>
   </form>
-<?
-} 
+<?php
+/*}*/
+?>
