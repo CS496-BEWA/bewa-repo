@@ -25,6 +25,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" href="PHPTesting/testing4/Calendar/index.php">Calendar</a>
+            <a class="nav-link" href="announcement.php">Add Announcement</a>
           </div>
         </div>
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
@@ -72,9 +73,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <div class="row">
         <div class="col-9">
           <?php //require "PHPTesting/testing4/Calendar/index.php"?>
-
+          <a href="https://calendar.google.com/calendar/u/0/r?cid=bewaproject@gmail.com" target="_blank">Manage Shifts</a>
           <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FChicago&amp;src=YmV3YXByb2plY3RAZ21haWwuY29t&amp;color=%23039BE5" style="border:solid 1px #777" width="980" height="600" frameborder="0" scrolling="no"></iframe>
-        
+
         </div>
         <div class="col border border-primary">
 
