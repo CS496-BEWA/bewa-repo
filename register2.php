@@ -4,7 +4,9 @@ require_once "includes/dbh.inc.php";
 
 //define variables and init them to empty
 $username = $password = $confirm_password ="";
+$firstName = $lastName = "";
 $username_err = $password_err = $confirm_password_err = "";
+$first_err = $last_err = "";
 
 //Process form data when submitted
 if($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -37,6 +39,21 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     }
   }
 
+  //validate first name
+  if(empty(trim($_POST['firstName']))){
+    $first_err = "Please enter a First Name";
+  }else{
+    $firstName = trim($_POST['firstName']);
+  }
+
+  if (empty(trim($_POST['lastName']))) {
+    $last_err = "Please enter a Last Name";
+  }else {
+    $lastName = trim($_POST['lastName']);
+  }
+
+
+
   //validate password
   if(empty(trim($_POST["password"]))){
     $password_err = "Please Enter a Password";
@@ -59,14 +76,18 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
   //Check input errors before inserting anything into database
   if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
     //Prepare SQL statement to insert
-    $sql = "INSERT INTO users (username,password) VALUES (?,?)";
+    $sql = "INSERT INTO users (username,password,firstName,lastName) VALUES (?,?,?,?)";
+
     if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            mysqli_stmt_bind_param($stmt, "ssss", $param_username, $param_password, $param_first_name, $param_last_name);
+
 
             // Set parameters
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            $param_first_name = $firstName;
+            $param_last_name = $lastName;
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -126,11 +147,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
                 <span class="help-block"><?php echo $confirm_password_err; ?></span>
             </div>
-            <!--<div class="mb-4 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Manager Account?</label>
-              <label class="fw-light text-muted mb-4">Only check this if you plan on creating and managing Businesses within the BEWA App.</label>
-          </div>-->
+            <div class="form-group mb-4 <?php echo (!empty($first_err)) ? 'has-error' : ''; ?>">
+                <label>First Name</label>
+                <input type="text" name="firstName" class="form-control" value="<?php echo $firstName; ?>">
+                <span class="help-block"><?php echo $first_err; ?></span>
+            </div>
+            <div class="form-group mb-4 <?php echo (!empty($last_err)) ? 'has-error' : ''; ?>">
+                <label>Last Name</label>
+                <input type="text" name="lastName" class="form-control" value="<?php echo $lastName; ?>">
+                <span class="help-block"><?php echo $last_err; ?></span>
+            </div>
             <div class="form-group mb-4">
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
