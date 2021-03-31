@@ -37,7 +37,8 @@ require_once "includes/dbh.inc.php";
 
 
           <div class="navbar-nav">
-            <?php echo "<p class=\"nav-link\">Hello ".htmlspecialchars($_SESSION["firstName"])."</p>"    ; ?>            <a class="nav-link" href="requests.php">Requests</a>
+            <?php echo "<p class=\"nav-link\">Hello ".htmlspecialchars($_SESSION["firstName"])."</p>"    ; ?>
+            <a class="nav-link" href="requests.php">Requests</a>
             <a class="nav-link" href="logout2.php">Log Out</a>
             <a class="nav-link" href="reset-password2.php">Change Password</a>
           </div>
