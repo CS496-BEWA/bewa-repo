@@ -89,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </nav>
     <br><br><br><br>
 
-  <h1 class="mx-auto fs-2 fw-bolder mb-4 " style="width: 400px;">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>.</h1>
+  <h1 class="mx-auto fs-2 fw-bolder mb-4 " style="width: 400px;">Hi, <b><?php echo htmlspecialchars($_SESSION["firstName"]); ?></b>.</h1>
     <div class="mx-auto" style="width: 400px;">
         <h2 class="mx-auto fs-2 fw-bolder mb-4 " style="width: 400px;">Reset Password</h2>
         <p class="mx-auto fw-light text-muted mb-5" style="width: 400px;">Please fill out this form to reset your password.</p>
