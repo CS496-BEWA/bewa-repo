@@ -7,6 +7,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login3.php");
     exit;
 }
+
+// Include config file
+require_once "includes/dbh.inc.php";
+
 ?>
 <html lang="en">
 <head>
@@ -24,8 +28,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
+<<<<<<< HEAD
             <a class="nav-link" href="#">Workplace Policy</a>
             <a class="nav-link" href="PHPTesting/testing4/Calendar/index.php">Calendar</a>
+=======
+            <a class="nav-link" href="PHPTesting/testing4/testing5/index.php">Calendar</a>
+>>>>>>> ffbe5b50b35f9aab1a1670853601963b29d9cf81
             <a class="nav-link" href="announcement.php">Add Announcement</a>
           </div>
         </div>
@@ -35,6 +43,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
           <div class="navbar-nav">
             <?php echo "<p class=\"nav-link\">Hello ".htmlspecialchars($_SESSION["firstName"])."</p>"    ; ?>
+            <a class="nav-link" href="requests.php">Requests</a>
             <a class="nav-link" href="logout2.php">Log Out</a>
             <a class="nav-link" href="reset-password2.php">Change Password</a>
           </div>
@@ -45,9 +54,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </div>
     </nav>
 
-    <br>
-    <br>
-    <br>
+    <br><br><br>
 
     <div class="container">
       <div class="row">
@@ -73,30 +80,33 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       </div>
       <div class="row">
         <div class="col-9">
+<<<<<<< HEAD
           <a href="https://calendar.google.com/calendar/u/0/r?cid=bewaproject@gmail.com" target="_blank" class="btn btn-secondary">Manage Shifts</a>
+=======
+          <a href="https://calendar.google.com/calendar/u/0/r?cid=bewaproject@gmail.com" target="_blank">Manage Shifts</a>
+>>>>>>> ffbe5b50b35f9aab1a1670853601963b29d9cf81
           <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FChicago&amp;src=YmV3YXByb2plY3RAZ21haWwuY29t&amp;color=%23039BE5" style="border:solid 1px #777" width="980" height="600" frameborder="0" scrolling="no"></iframe>
-
         </div>
         <div class="col border border-primary">
-
-          <div class="col-sm h5">
+          <div class="row ml-3 h5 ms-5 mt-2">
             Announcement Feed
-          </div>
-          <div class="row">
-            <div class="col-sm">
-              Subject Line
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm">
-              <a href="#">Title and Link to Announcement</a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm">
-              Preview Text
-            </div>
-          </div>
+          </div><br>
+            <?php $sql = "SELECT subject, title, text FROM announcement";
+              $result = $conn->query($sql);
+
+              if ($result->num_rows > 0) {
+                // output data of each row
+                while($row = $result->fetch_assoc()) {
+                  echo "<div class='row'>";
+                  /*echo "<div class='fs-5 fw-bold'>".$row["subject"]."</div><br>".-*/
+                  echo "<div class='fs-5'>".$row["title"]."</div><br>"."<div class='fw-light'>".$row["text"]."</div><br><br>";
+                  echo "</div>";
+                }
+              } else {
+                echo "0 results";
+              }
+              $conn->close();
+            ?>
         </div>
       </div>
     </div>
