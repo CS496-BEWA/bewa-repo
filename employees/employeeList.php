@@ -1,5 +1,5 @@
 <?php require '../includes/dbh.inc.php';
-session_start();
+require '../header.php';
 
 //If a non-manager gets to this page, redirect them to the home page
 if(!isset($_SESSION["isAdmin"]) || $_SESSION["isAdmin"] !== 1){
