@@ -1,4 +1,4 @@
-<?php require 'includes/dbh.inc.php';
+<?php require '../includes/dbh.inc.php';
 session_start(); ?>
 
 <!DOCTYPE html>
@@ -33,36 +33,41 @@ session_start(); ?>
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
                         <h2 class="pull-left">Employee Details</h2>
-                        <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Employee</a>
+                        <a href="addEmployee.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Employee</a>
                     </div>
                     <?php
 
                     // Attempt select query execution
-                    $sql = "SELECT * FROM employees, users";
+                    $sql = "SELECT * FROM employee, users WHERE employee.uid = users.uid GROUP BY users.uid";
                     if($result = mysqli_query($conn, $sql)){
                         if(mysqli_num_rows($result) > 0){
                             echo '<table class="table table-bordered table-striped">';
                                 echo "<thead>";
                                     echo "<tr>";
-                                        echo "<th>#</th>";
+                                        echo "<th>Employee ID</th>";
                                         echo "<th>First Name</th>";
                                         echo "<th>Last Name</th>";
                                         echo "<th>Wage</th>";
                                         echo "<th>Total Hours</th>";
                                         echo "<th>Hours This Week</th>";
+                                        echo "<th>Manager Status</th>";
+                                        echo "<th>Actions</th>";
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['id'] . "</td>";
-                                        echo "<td>" . $row['name'] . "</td>";
-                                        echo "<td>" . $row['address'] . "</td>";
-                                        echo "<td>" . $row['salary'] . "</td>";
+                                        echo "<td>" . $row['empID'] . "</td>";
+                                        echo "<td>" . $row['firstName'] . "</td>";
+                                        echo "<td>" . $row['lastName'] . "</td>";
+                                        echo "<td>" . $row['wage'] . "</td>";
+                                        echo "<td>" . $row['hoursWorked'] . "</td>";
+                                        echo "<td>" . $row['hoursWorkedLastWeek'] . "</td>";
+                                        echo "<td>" . $row['managerStatus'] . "</td>";
                                         echo "<td>";
-                                            echo '<a href="read.php?id='. $row['id'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
-                                            echo '<a href="update.php?id='. $row['id'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
-                                            echo '<a href="delete.php?id='. $row['id'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                                            echo '<a href="read.php?id='. $row['empID'] .'" class="mr-3" title="View Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
+                                            echo '<a href="update.php?id='. $row['empID'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                                            echo '<a href="delete.php?id='. $row['empID'] .'" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
                                         echo "</td>";
                                     echo "</tr>";
                                 }
