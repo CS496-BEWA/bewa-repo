@@ -1,5 +1,21 @@
 <?php require '../includes/dbh.inc.php';
-session_start(); ?>
+session_start();
+
+//If a non-manager gets to this page, redirect them to the home page
+if(!isset($_SESSION["isAdmin"]) || $_SESSION["isAdmin"] !== 1){
+    header("location: ../home.php");
+    exit;
+}
+
+
+
+//if they somehow got here without being logged in, redirect them to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: ../login3.php");
+    exit;
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
