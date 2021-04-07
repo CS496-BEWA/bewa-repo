@@ -23,18 +23,19 @@ require_once "includes/dbh.inc.php";
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="home.php">BEWA</a>
+        <a class="navbar-brand" href="/bewa-repo/home.php">BEWA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" href="#">Workplace Policy</a>
-            <a class="nav-link" href="PHPTesting/testing4/Calendar/index.php">Calendar</a>
-            <a class="nav-link" href="announcement.php">Add Announcement</a>
+            <a class="nav-link" href="/bewa-repo/PHPTesting/testing4/Calendar/index.php">Calendar</a>
+            <a class="nav-link" href="/bewa-repo/announcement.php">Add Announcement</a>
             <?php if ($_SESSION["isAdmin"]==1) {
-              echo "<a class=\"nav-link\" href=\"requests.php\">View Requests</a>";
-              echo "<a class=\"nav-link\" href=\"employees/employeeList.php\">Employees</a>";
+              //if the logged-in user is a manager/admin, show certain links
+              echo "<a class=\"nav-link\" href=\"/bewa-repo/requests.php\">View Requests</a>";
+              echo "<a class=\"nav-link\" href=\"/bewa-repo/employees/employeeList.php\">Employees</a>";
             } ?>
           </div>
         </div>
@@ -42,8 +43,8 @@ require_once "includes/dbh.inc.php";
           <div class="navbar-nav">
             <?php echo "<p class=\"nav-link\">Hello ".htmlspecialchars($_SESSION["firstName"])."</p>"    ; ?>
 
-            <a class="nav-link" href="logout2.php">Log Out</a>
-            <a class="nav-link" href="reset-password2.php">Change Password</a>
+            <a class="nav-link" href="/bewa-repo/logout2.php">Log Out</a>
+            <a class="nav-link" href="/bewa-repo/reset-password2.php">Change Password</a>
           </div>
         </div>
     </nav>
