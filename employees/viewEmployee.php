@@ -113,4 +113,4 @@ if(isset($_GET["empID"]) && !empty(trim($_GET["empID"]))){
     </div>
 </body>
 </html>
-<?php require '../footer.php' ?>
+<?php 'require ../footer.php' ?>

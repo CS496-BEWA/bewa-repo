@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2021 at 12:13 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- Generation Time: Apr 09, 2021 at 01:11 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,25 +40,8 @@ CREATE TABLE `announcement` (
 --
 
 INSERT INTO `announcement` (`id`, `empID`, `subject`, `text`, `title`) VALUES
-(1, 1, 'Schedule', 'Please check the new shift schedule. Let a manager know if there are any issues!', 'New Shift Schedule is out');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `company`
---
-
-CREATE TABLE `company` (
-  `CompanyID` int(11) NOT NULL,
-  `CompanyName` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `company`
---
-
-INSERT INTO `company` (`CompanyID`, `CompanyName`) VALUES
-(1, 'Eli\'s Eatery');
+(1, 1, 'Testing', 'This is a test Announcement', 'Testing'),
+(2, 1, 'test announcement 2', 'This is a second Announcement', 'Testing 2');
 
 -- --------------------------------------------------------
 
@@ -69,22 +52,19 @@ INSERT INTO `company` (`CompanyID`, `CompanyName`) VALUES
 CREATE TABLE `employee` (
   `empID` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
-  `CompanyID` int(11) NOT NULL,
-  `firstName` text NOT NULL,
-  `lastName` text NOT NULL,
-  `wage` int(11) NOT NULL,
-  `hoursWorked` int(11) NOT NULL,
-  `hoursWorkedLastWeek` int(11) NOT NULL,
-  `managerStatus` tinyint(1) NOT NULL,
-  `password` int(11) NOT NULL
+  `wage` int(11) NOT NULL DEFAULT 0,
+  `hoursWorked` int(11) NOT NULL DEFAULT 0,
+  `hoursWorkedLastWeek` int(11) NOT NULL DEFAULT 0,
+  `managerStatus` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`empID`, `uid`, `CompanyID`, `firstName`, `lastName`, `wage`, `hoursWorked`, `hoursWorkedLastWeek`, `managerStatus`, `password`) VALUES
-(1, 3, 1, 'Eli', 'Estes', 3, 2, 3, 1, 123);
+INSERT INTO `employee` (`empID`, `uid`, `wage`, `hoursWorked`, `hoursWorkedLastWeek`, `managerStatus`) VALUES
+(1, 20, 0, 0, 0, 1),
+(2, 21, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -107,8 +87,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `empID`, `title`, `start_event`, `end_event`, `color`, `text_color`) VALUES
-(2, 0, 'Project 1', '2021-02-16 08:30:00', '2021-02-16 09:00:00', '#6453e9', '#ffffff'),
-(3, 1, 'Test Event', '2021-03-26 08:30:00', '2021-03-26 09:00:00', '#6453e9', '#ffffff');
+(2, 0, 'Project 1', '2021-02-16 08:30:00', '2021-02-16 09:00:00', '#6453e9', '#ffffff');
 
 -- --------------------------------------------------------
 
@@ -141,17 +120,23 @@ CREATE TABLE `users` (
   `uid` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `created_at` datetime DEFAULT current_timestamp()
+  `created_at` datetime DEFAULT current_timestamp(),
+  `isAdmin` tinyint(1) NOT NULL,
+  `firstName` text NOT NULL,
+  `lastName` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`uid`, `username`, `password`, `created_at`) VALUES
-(1, 'zdilliha@gmail.com', '$2y$10$mhnKVRfUjTW1QyQJo8NCWezcBzy8aAXIA2avATOZDm0Sx3vXPkFlK', '2021-03-16 22:02:43'),
-(2, 'admin', '$2y$10$erl.ERrbdWwpPDJjVqaPpunBFNc/7ceDGlj2845SZJzqKP/NrrNey', '2021-03-16 23:02:18'),
-(3, 'eli', '$2y$10$1cZi/.UcBbn/LUKT8QLEEemI36ZoOYo.dZ1F1QS2oIKGlvNPdqDnO', '2021-03-22 21:34:08');
+INSERT INTO `users` (`uid`, `username`, `password`, `created_at`, `isAdmin`, `firstName`, `lastName`) VALUES
+(1, 'zdilliha@gmail.com', '$2y$10$mhnKVRfUjTW1QyQJo8NCWezcBzy8aAXIA2avATOZDm0Sx3vXPkFlK', '2021-03-16 22:02:43', 1, '', ''),
+(2, 'admin', '$2y$10$erl.ERrbdWwpPDJjVqaPpunBFNc/7ceDGlj2845SZJzqKP/NrrNey', '2021-03-16 23:02:18', 1, 'adminFirstName', 'adminLastName'),
+(3, 'zach1', '$2y$10$1Ea43sr3P6BmKPBeXHJsVejPxlIFzgF3wfyv/DAo4fbBVTl/UWxsi', '2021-03-17 12:47:45', 0, '', ''),
+(4, 'testingNames', '$2y$10$.VARZpfNlotHs56PEulLoOjQkWsWf12T2PwQK4mQlK0NGfz3YbVE.', '2021-03-30 23:50:56', 0, 'First Name', 'Last Name'),
+(20, 'admin2', '$2y$10$EoOSibb7AM0aWInuRfKtIO7v/BEnKR6iNl5JKGx/o6S/I4J9N86Ru', '2021-04-07 20:06:27', 1, 'admin', 'admin'),
+(21, 'admin3', '$2y$10$CW0IhpdjkPIuSRa9fNQapeB9FlgES2MxWkmFJY.L9PS42TvDQr.aK', '2021-04-07 22:27:53', 0, 'admin3', 'admin3');
 
 --
 -- Indexes for dumped tables
@@ -161,21 +146,13 @@ INSERT INTO `users` (`uid`, `username`, `password`, `created_at`) VALUES
 -- Indexes for table `announcement`
 --
 ALTER TABLE `announcement`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `empID` (`empID`);
-
---
--- Indexes for table `company`
---
-ALTER TABLE `company`
-  ADD PRIMARY KEY (`CompanyID`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
   ADD PRIMARY KEY (`empID`),
-  ADD KEY `CompanyID` (`CompanyID`),
   ADD KEY `uid` (`uid`);
 
 --
@@ -184,13 +161,6 @@ ALTER TABLE `employee`
 ALTER TABLE `events`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `empID_2` (`empID`),
-  ADD KEY `empID` (`empID`);
-
---
--- Indexes for table `request`
---
-ALTER TABLE `request`
-  ADD PRIMARY KEY (`rid`),
   ADD KEY `empID` (`empID`);
 
 --
@@ -205,39 +175,38 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `announcement`
+--
+ALTER TABLE `announcement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `employee`
+--
+ALTER TABLE `employee`
+  MODIFY `empID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `announcement`
---
-ALTER TABLE `announcement`
-  ADD CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`empID`) REFERENCES `employee` (`empID`);
-
---
 -- Constraints for table `employee`
 --
 ALTER TABLE `employee`
-  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`CompanyID`) REFERENCES `company` (`CompanyID`),
   ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`);
-
---
--- Constraints for table `request`
---
-ALTER TABLE `request`
-  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`empID`) REFERENCES `employee` (`empID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
