@@ -91,6 +91,27 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
+
+
+                //If the user successfuly registers, add them as a new 'Employee'
+                $sql2 = "INSERT INTO employee (uid,wage,hoursWorked,hoursWorkedLastWeek, managerStatus) VALUES (?,?,?,?,?)";
+
+                if($stmt2 = mysqli_prepare($conn,$sql2)){
+                  mysqli_stmt_bind_param($stmt2, "siiii", $param_uid, $param_wage, $param_hours, $param_hours_2, $param_manager_status);
+
+                  $param_uid = mysqli_insert_id($conn);
+
+
+                  $param_wage = 0;
+                  $param_hours = 0;
+                  $param_hours_2 = 0;
+                  $param_manager_status = 0;
+
+                  if (mysqli_stmt_execute($stmt2)) {
+                    // Redirect to login page
+                    header("location: login3.php");
+                  }
+                }
                 // Redirect to login page
                 header("location: login3.php");
             } else{
