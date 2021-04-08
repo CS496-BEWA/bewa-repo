@@ -3,6 +3,7 @@
 if(isset($_GET["empID"]) && !empty(trim($_GET["empID"]))){
     // Include config file
     require_once "../includes/dbh.inc.php";
+    require '../header.php';
 
     // Prepare a select statement
     //$sql = "SELECT * FROM employee WHERE empID = ?";
@@ -112,3 +113,4 @@ if(isset($_GET["empID"]) && !empty(trim($_GET["empID"]))){
     </div>
 </body>
 </html>
+<?php require '../footer.php' ?>

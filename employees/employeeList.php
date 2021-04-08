@@ -48,8 +48,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             <div class="row">
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
-                        <h2 class="pull-left">Employee Details</h2>
+                        <h2 class="pull-left">Your Employees</h2>
+                        <!-- Might not need this?
                         <a href="addEmployee.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Employee</a>
+                      -->
                     </div>
                     <?php
 
