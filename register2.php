@@ -99,9 +99,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 if($stmt2 = mysqli_prepare($conn,$sql2)){
                   mysqli_stmt_bind_param($stmt2, "siiii", $param_uid, $param_wage, $param_hours, $param_hours_2, $param_manager_status);
 
+                  //gets uid from the newly registered user
                   $param_uid = mysqli_insert_id($conn);
-
-
                   $param_wage = 0;
                   $param_hours = 0;
                   $param_hours_2 = 0;
