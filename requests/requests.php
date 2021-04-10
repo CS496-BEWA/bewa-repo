@@ -23,6 +23,30 @@ require_once "../includes/dbh.inc.php";
 </head>
 <body>
 
+<br><br><br>
+
+<div class="container mx-5">
+    <div class="row fs-3 border-bottom border-3 border-dark">
+    Requests
+    </div>
+    <div class="row">
+        <div class="col">
+        Start Date
+        </div>
+        <div class="col">
+        End Date
+        </div>
+        <div class="col">
+        Resolved
+        </div>
+        <div class="col">
+        Employee ID
+        </div>
+        <div class="col">
+        Request Type
+        </div>
+    </div>
+
     <?php $sql = "SELECT * FROM request";
         $result = $conn->query($sql);
 
@@ -32,23 +56,27 @@ require_once "../includes/dbh.inc.php";
                 echo "<div class='row'>";
 
                   echo "<div class='col fs-5'>";
-                    echo "Start Time: ".$row["start_req"];
+                    echo $row["start_req"];
                   echo "</div><br>";
 
                   echo "<div class='col fs-5'>";
-                    echo "End Time: ".$row["end_req"];
+                    echo $row["end_req"];
                   echo "</div><br>";
 
                   echo "<div class='col fs-5'>";
-                    echo "Is Resolved: ".$row["resolved"];
+                    if ($row["resolved"] == 0) {
+                        echo "No";
+                    }
+                    else {
+                      echo "Yes";
+                    }
                   echo "</div><br>";
 
                   echo "<div class='col fs-5'>";
-                    echo "Employee ID: ".$row["empID"];
+                    echo $row["empID"];
                   echo "</div><br>";
 
                   echo "<div class='col fs-5'>";
-                    echo "Request Type: ";
                       if($row["reqType"]==0){
                         echo "Shift Swap";
                       }else{
@@ -64,6 +92,8 @@ require_once "../includes/dbh.inc.php";
         }
         $conn->close();
     ?>
+
+  </div>
 
 </body>
 </html>
