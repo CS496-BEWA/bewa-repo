@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2021 at 01:11 AM
+-- Generation Time: Apr 10, 2021 at 05:39 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -41,7 +41,8 @@ CREATE TABLE `announcement` (
 
 INSERT INTO `announcement` (`id`, `empID`, `subject`, `text`, `title`) VALUES
 (1, 1, 'Testing', 'This is a test Announcement', 'Testing'),
-(2, 1, 'test announcement 2', 'This is a second Announcement', 'Testing 2');
+(2, 1, 'test announcement 2', 'This is a second Announcement', 'Testing 2'),
+(3, 1, 'Test Subject', 'Test Text', 'Test Title');
 
 -- --------------------------------------------------------
 
@@ -63,8 +64,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`empID`, `uid`, `wage`, `hoursWorked`, `hoursWorkedLastWeek`, `managerStatus`) VALUES
-(1, 20, 0, 0, 0, 1),
-(2, 21, 0, 0, 0, 0);
+(3, 22, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -98,6 +98,7 @@ INSERT INTO `events` (`id`, `empID`, `title`, `start_event`, `end_event`, `color
 CREATE TABLE `request` (
   `rid` int(11) NOT NULL,
   `empID` int(11) NOT NULL,
+  `reqType` tinyint(1) NOT NULL,
   `start_req` datetime NOT NULL,
   `end_req` datetime NOT NULL,
   `resolved` tinyint(1) NOT NULL
@@ -107,8 +108,8 @@ CREATE TABLE `request` (
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`rid`, `empID`, `start_req`, `end_req`, `resolved`) VALUES
-(1, 1, '2021-04-01 12:00:00', '2021-04-03 12:00:00', 0);
+INSERT INTO `request` (`rid`, `empID`, `reqType`, `start_req`, `end_req`, `resolved`) VALUES
+(1, 1, 0, '2021-04-01 12:00:00', '2021-04-03 12:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -135,8 +136,9 @@ INSERT INTO `users` (`uid`, `username`, `password`, `created_at`, `isAdmin`, `fi
 (2, 'admin', '$2y$10$erl.ERrbdWwpPDJjVqaPpunBFNc/7ceDGlj2845SZJzqKP/NrrNey', '2021-03-16 23:02:18', 1, 'adminFirstName', 'adminLastName'),
 (3, 'zach1', '$2y$10$1Ea43sr3P6BmKPBeXHJsVejPxlIFzgF3wfyv/DAo4fbBVTl/UWxsi', '2021-03-17 12:47:45', 0, '', ''),
 (4, 'testingNames', '$2y$10$.VARZpfNlotHs56PEulLoOjQkWsWf12T2PwQK4mQlK0NGfz3YbVE.', '2021-03-30 23:50:56', 0, 'First Name', 'Last Name'),
-(20, 'admin2', '$2y$10$EoOSibb7AM0aWInuRfKtIO7v/BEnKR6iNl5JKGx/o6S/I4J9N86Ru', '2021-04-07 20:06:27', 1, 'admin', 'admin'),
-(21, 'admin3', '$2y$10$CW0IhpdjkPIuSRa9fNQapeB9FlgES2MxWkmFJY.L9PS42TvDQr.aK', '2021-04-07 22:27:53', 0, 'admin3', 'admin3');
+(20, 'admin2', '$2y$10$EoOSibb7AM0aWInuRfKtIO7v/BEnKR6iNl5JKGx/o6S/I4J9N86Ru', '2021-04-07 20:06:27', 1, 'test', 'updatethree'),
+(21, 'admin3', '$2y$10$CW0IhpdjkPIuSRa9fNQapeB9FlgES2MxWkmFJY.L9PS42TvDQr.aK', '2021-04-07 22:27:53', 0, 'admin3', 'admin3'),
+(22, 'testingAdminAdd', '$2y$10$uxvj1bEbsUN4iTVxgu8LPOAS2332JOQ/N13hrNrldTZEWf170bEKW', '2021-04-09 21:35:07', 1, 'test', 'manager');
 
 --
 -- Indexes for dumped tables
@@ -178,13 +180,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `empID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `empID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -196,7 +198,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
