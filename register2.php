@@ -73,14 +73,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         }
   }
 
+  $managerStatus = $isAdmin = trim($_POST["managerStatus"]);
+
   //Check input errors before inserting anything into database
   if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
     //Prepare SQL statement to insert
-    $sql = "INSERT INTO users (username,password,firstName,lastName) VALUES (?,?,?,?)";
+    $sql = "INSERT INTO users (username,password,firstName,lastName,isAdmin) VALUES (?,?,?,?,?)";
 
     if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssss", $param_username, $param_password, $param_first_name, $param_last_name);
+            mysqli_stmt_bind_param($stmt, "ssssi", $param_username, $param_password, $param_first_name, $param_last_name, $param_is_admin);
 
 
             // Set parameters
@@ -88,6 +90,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             $param_first_name = $firstName;
             $param_last_name = $lastName;
+            $param_is_admin = $isAdmin;
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -104,7 +107,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                   $param_wage = 0;
                   $param_hours = 0;
                   $param_hours_2 = 0;
-                  $param_manager_status = 0;
+                  $param_manager_status = $managerStatus;
 
                   if (mysqli_stmt_execute($stmt2)) {
                     // Redirect to login page
@@ -177,6 +180,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 <input type="text" name="lastName" class="form-control" value="<?php echo $lastName; ?>">
                 <span class="help-block"><?php echo $last_err; ?></span>
             </div>
+            <label>FOR TESTING PURPOSES ONLY</label>
+            <div class="form-group">
+                <label>Manager</label>
+                <input type="radio" name="managerStatus" value="1" checked>
+                <label>Employee</label>
+                <input type="radio" name="managerStatus" value="0">
+            </div>
+            <br>
             <div class="form-group mb-4">
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
