@@ -5,12 +5,14 @@ require 'header.php';
     <br><br><br>
 
     <div class="container">
+
       <div class="row">
         <div class="col-9 mb-3">
-          <button type="button" class="btn btn-secondary" onclick="location.href = '#';" data-bs-toggle="button" autocomplete="off">Request Shift Swap</button>
-          <button type="button" class="btn btn-secondary ms-2" onclick="location.href = '#';" data-bs-toggle="button" autocomplete="off">Ask For Time Off</button>
+          <button type="button" class="btn btn-secondary" onclick="location.href = 'requests/shiftSwap.php';" data-bs-toggle="button" autocomplete="off">Request Shift Swap</button>
+          <button type="button" class="btn btn-secondary ms-2" onclick="location.href = 'requests/timeOff.php';" data-bs-toggle="button" autocomplete="off">Ask For Time Off</button>
         </div>
       </div>
+<!--
       <div class="row">
         <div class="col-9 mb-3">
           <div class="row">
@@ -26,6 +28,8 @@ require 'header.php';
           </div>
         </div>
       </div>
+-->
+
       <div class="row">
         <div class="col-9">
 

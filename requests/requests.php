@@ -22,12 +22,6 @@ require_once "../includes/dbh.inc.php";
     <title>Requests</title>
 </head>
 <body>
-  <div class="col">
-    <a href="addRequest.php" class="btn btn-secondary">Shift Swap</a>
-  </div>
-  <div class="col">
-    <a href="addRequest.php" class="btn btn-secondary">Time Off</a>
-  </div>
 
     <?php $sql = "SELECT * FROM request";
         $result = $conn->query($sql);
