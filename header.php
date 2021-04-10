@@ -34,7 +34,7 @@ require_once "includes/dbh.inc.php";
             <a class="nav-link" href="/bewa-repo/announcement.php">Add Announcement</a>
             <?php if ($_SESSION["isAdmin"]==1) {
               //if the logged-in user is a manager/admin, show certain links
-              echo "<a class=\"nav-link\" href=\"/bewa-repo/requests.php\">View Requests</a>";
+              echo "<a class=\"nav-link\" href=\"/bewa-repo/requests/requests.php\">View Requests</a>";
               echo "<a class=\"nav-link\" href=\"/bewa-repo/employees/employeeList.php\">Employees</a>";
             } ?>
           </div>
