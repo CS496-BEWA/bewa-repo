@@ -1,9 +1,9 @@
 <?php
 // Include config file
-require_once "config.php";
+require_once "../includes/dbh.inc.php";
 
 // Define variables and initialize with empty values
-$firstName = $lastName = $wage = $hoursWorked = $hours2 = $managerStatus = "";
+$firstName = $lastName = $wage = $hoursWorked = $hoursWorked2 = $managerStatus = "";
 $first_name_err = $last_name_err = $wage_err = $hours1_err = $hours2_err = "";
 
 // Processing form data when form is submitted
@@ -54,39 +54,38 @@ if(isset($_POST["empID"]) && !empty($_POST["empID"])){
 
     // Validate hours worked this week
     $input_hours_2 = trim($_POST["hoursWorkedLastWeek"]);
-    if(empty($input_hours)){
-        $hours1_err = "Please enter the amount of hours.";
-    } elseif(!ctype_digit($input_hours)){
-        $hours1_err = "Please enter a positive number of hours.";
+    if(empty($input_hours_2)){
+        $hours2_err = "Please enter the amount of hours.";
+    } elseif(!ctype_digit($input_hours_2)){
+        $hours2_err = "Please enter a positive number of hours.";
     } else{
-        $hoursWorked = $input_hours;
+        $hoursWorked2 = $input_hours_2;
     }
 
-
-
-
-
-
+    $managerStatus = $isAdmin = trim($_POST["managerStatus"]);
 
     // Check input errors before inserting in database
-    if(empty($name_err) && empty($address_err) && empty($salary_err)){
+    if(empty($first_name_err) && empty($last_name_err) && empty($wage_err) && empty($hours1_err) && empty($hours2_err)){
         // Prepare an update statement
-        $sql = "UPDATE employees SET name=?, address=?, salary=? WHERE id=?";
+        $sql = "UPDATE employee, users SET users.firstName=?, users.lastName=?, employee.wage=?, employee.hoursWorked=?, employee.hoursWorkedLastWeek=?, employee.managerStatus=?, users.isAdmin=?  WHERE empID=? AND employee.uid=users.uid";
 
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssi", $param_name, $param_address, $param_salary, $param_id);
+            mysqli_stmt_bind_param($stmt, "ssiiiiii", $param_first_name, $param_last_name, $param_wage, $param_hours_1, $param_hours_2, $param_manager_status, $param_is_admin, $param_empID);
 
             // Set parameters
-            $param_name = $name;
-            $param_address = $address;
-            $param_salary = $salary;
-            $param_id = $id;
+            $param_first_name = $firstName;
+            $param_last_name = $lastName;
+            $param_wage = $wage;
+            $param_hours_1 = $hoursWorked;
+            $param_hours_2 = $hoursWorked2;
+            $param_manager_status = $param_is_admin = $managerStatus;
+            $param_empID = $empID;
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records updated successfully. Redirect to landing page
-                header("location: index.php");
+                header("location: employeeList.php");
                 exit();
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -98,21 +97,21 @@ if(isset($_POST["empID"]) && !empty($_POST["empID"])){
     }
 
     // Close connection
-    mysqli_close($link);
+    mysqli_close($conn);
 } else{
-    // Check existence of id parameter before processing further
-    if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
+    // Check existence of empid parameter before processing further
+    if(isset($_GET["empID"]) && !empty(trim($_GET["empID"]))){
         // Get URL parameter
-        $id =  trim($_GET["id"]);
+        $empID =  trim($_GET["empID"]);
 
         // Prepare a select statement
-        $sql = "SELECT * FROM employees WHERE id = ?";
-        if($stmt = mysqli_prepare($link, $sql)){
+        $sql = "SELECT * FROM employees, users WHERE empID = ? AND users.uid=employee.uid";
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "i", $param_id);
+            mysqli_stmt_bind_param($stmt, "i", $param_empID);
 
             // Set parameters
-            $param_id = $id;
+            $param_empID = $empID;
 
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -124,9 +123,13 @@ if(isset($_POST["empID"]) && !empty($_POST["empID"])){
                     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
                     // Retrieve individual field value
-                    $name = $row["name"];
-                    $address = $row["address"];
-                    $salary = $row["salary"];
+                    $firstName = $row["firstName"];
+                    $lastName = $row["lastName"];
+                    $wage = $row["wage"];
+                    $hoursWorked = $row['hoursWorked'];
+                    $hoursWorked2 = $row['hoursWorkedLastWeek'];
+
+                    mysqli_stmt_close($stmt);
                 } else{
                     // URL doesn't contain valid id. Redirect to error page
                     header("location: error.php");
@@ -139,10 +142,10 @@ if(isset($_POST["empID"]) && !empty($_POST["empID"])){
         }
 
         // Close statement
-        mysqli_stmt_close($stmt);
+
 
         // Close connection
-        mysqli_close($link);
+        mysqli_close($conn);
     }  else{
         // URL doesn't contain id parameter. Redirect to error page
         header("location: error.php");
@@ -172,24 +175,49 @@ if(isset($_POST["empID"]) && !empty($_POST["empID"])){
                     <h2 class="mt-5">Update Record</h2>
                     <p>Please edit the input values and submit to update the employee record.</p>
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
+
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $name; ?>">
-                            <span class="invalid-feedback"><?php echo $name_err;?></span>
+                            <label>First Name</label>
+                            <input type="text" name="firstName" class="form-control <?php echo (!empty($first_name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstName; ?>">
+                            <span class="invalid-feedback"><?php echo $first_name_err;?></span>
                         </div>
+
                         <div class="form-group">
-                            <label>Address</label>
-                            <textarea name="address" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>"><?php echo $address; ?></textarea>
-                            <span class="invalid-feedback"><?php echo $address_err;?></span>
+                            <label>Last Name</label>
+                            <input type="text" name="lastName" class="form-control <?php echo (!empty($last_name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $lastName; ?>">
+                            <span class="invalid-feedback"><?php echo $last_name_err;?></span>
                         </div>
+
                         <div class="form-group">
-                            <label>Salary</label>
-                            <input type="text" name="salary" class="form-control <?php echo (!empty($salary_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $salary; ?>">
-                            <span class="invalid-feedback"><?php echo $salary_err;?></span>
+                            <label>Wage</label>
+                            <input type="number" name="wage" class="form-control <?php echo (!empty($wage_err)) ? 'is-invalid' : ''; ?>"><?php echo $wage; ?></input>
+                            <span class="invalid-feedback"><?php echo $wage_err;?></span>
                         </div>
-                        <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+
+                        <div class="form-group">
+                            <label>Hours Worked (Total)</label>
+                            <input type="text" name="hoursWorked" class="form-control <?php echo (!empty($hours1_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $hoursWorked; ?>">
+                            <span class="invalid-feedback"><?php echo $hours1_err;?></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Hours Worked (Last Week)</label>
+                            <input type="text" name="hoursWorkedLastWeek" class="form-control <?php echo (!empty($hours2_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $hoursWorked2; ?>">
+                            <span class="invalid-feedback"><?php echo $hours2_err;?></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Manager</label>
+                            <input type="radio" name="managerStatus" value="1">
+                            <label>Employee</label>
+                            <input type="radio" name="managerStatus" value="0" checked>
+                        </div>
+
+
+
+                        <input type="hidden" name="empID" value="<?php echo $empID; ?>"/>
                         <input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="index.php" class="btn btn-secondary ml-2">Cancel</a>
+                        <a href="employeeList.php" class="btn btn-secondary ml-2">Cancel</a>
                     </form>
                 </div>
             </div>
