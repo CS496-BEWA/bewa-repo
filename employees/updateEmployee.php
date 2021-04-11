@@ -174,6 +174,7 @@ if(isset($_POST["empID"]) && !empty($_POST["empID"])){
                 <div class="col-md-12">
                     <h2 class="mt-5">Update Record</h2>
                     <p>Please edit the input values and submit to update the employee record.</p>
+                    <p class="small">(If this is your account, logout then log back in to see all changes)</p>
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
 
                         <div class="form-group">
