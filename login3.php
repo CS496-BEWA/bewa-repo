@@ -35,6 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
+        //$sql = "SELECT uid, username, password, firstName, lastName, isAdmin, empID FROM users INNER JOIN employee ON users.uid=employee.uid WHERE username = ?";
         $sql = "SELECT uid, username, password, firstName, lastName, isAdmin FROM users WHERE username = ?";
 
         if($stmt = mysqli_prepare($conn, $sql)){
@@ -58,6 +59,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Password is correct, so start a new session
                             session_start();
 
+
+                            $sql2 = "SELECT empID from employee WHERE uid = ?";
+                            if($stmt2 = mysqli_prepare($conn, $sql2)){
+                              mysqli_stmt_bind_param($stmt2, "i", $param_uid);
+                              $param_uid = $uid;
+                              if(mysqli_stmt_execute($stmt2)){
+                                mysqli_stmt_store_result($stmt2);
+                                if(mysqli_stmt_num_rows($stmt2) == 1){
+                                  mysqli_stmt_bind_result($stmt2,$empID);
+                                  if(mysqli_stmt_fetch($stmt2)){
+                                    $_SESSION['empID'] = $empID;
+                                  }
+                                }
+                              }
+                            }
+
+
+
+
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["uid"] = $uid;
@@ -65,6 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION['firstName'] = $firstName;
                             $_SESSION['lastName'] = $lastName;
                             $_SESSION['isAdmin'] = $isAdmin;
+
 
                             // Redirect user to welcome page
                             header("location: home.php");

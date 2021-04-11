@@ -41,7 +41,9 @@ require_once "includes/dbh.inc.php";
         </div>
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <?php echo "<p class=\"nav-link\">Hello ".htmlspecialchars($_SESSION["firstName"])."</p>"    ; ?>
+            <?php echo "<p class=\"nav-link\">Hello ".htmlspecialchars($_SESSION["firstName"])."</p>"    ;
+                  echo '<a class=nav-link href=account.php?empID='. $_SESSION['empID'] .'">View Account</a>';
+            ?>
 
             <a class="nav-link" href="/bewa-repo/logout2.php">Log Out</a>
             <a class="nav-link" href="/bewa-repo/reset-password2.php">Change Password</a>

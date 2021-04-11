@@ -32,9 +32,9 @@ require 'header.php';
 
       <div class="row">
         <div class="col-9">
-
-          <a href="https://calendar.google.com/calendar/u/0/r?cid=bewaproject@gmail.com" target="_blank" class="btn btn-secondary">Manage Shifts</a>
-
+          <?php if ($_SESSION["isAdmin"]==1) {?>
+            <a href="https://calendar.google.com/calendar/u/0/r?cid=bewaproject@gmail.com" target="_blank" class="btn btn-secondary">Manage Shifts</a>
+          <?php } ?>
 
           <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FChicago&amp;src=YmV3YXByb2plY3RAZ21haWwuY29t&amp;color=%23039BE5" style="border:solid 1px #777" width="980" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
