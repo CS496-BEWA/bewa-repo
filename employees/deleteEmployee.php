@@ -1,8 +1,10 @@
 <?php
+require '../header.php';
 // Process delete operation after confirmation
 if(isset($_POST["empID"]) && !empty($_POST["empID"])){
     // Include config file
     require_once "../includes/dbh.inc.php";
+
 
     // Prepare a delete statement
     $sql = "DELETE FROM employee WHERE empID = ?";

@@ -2,7 +2,7 @@
     require "database.php";
 
     $json = array();
-    $sqlQuery = "SELECT * FROM table_events ORDER BY id";
+    $sqlQuery = "SELECT * FROM events ORDER BY id";
 
     $result = mysqli_query($conn, $sqlQuery);
     $alldata = array();

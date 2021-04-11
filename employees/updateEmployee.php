@@ -1,6 +1,7 @@
 <?php
 // Include config file
 require_once "../includes/dbh.inc.php";
+require '../header.php';
 
 // Define variables and initialize with empty values
 $firstName = $lastName = $wage = $hoursWorked = $hoursWorked2 = $managerStatus = "";
