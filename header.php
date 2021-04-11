@@ -30,10 +30,10 @@ require_once "includes/dbh.inc.php";
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link" href="#">Workplace Policy</a>
-            <a class="nav-link" href="/bewa-repo/PHPTesting/testing4/Calendar/index.php">Calendar</a>
-            <a class="nav-link" href="/bewa-repo/announcement.php">Add Announcement</a>
+            <!--<a class="nav-link" href="/bewa-repo/PHPTesting/testing4/Calendar/index.php">Calendar</a>-->
             <?php if ($_SESSION["isAdmin"]==1) {
               //if the logged-in user is a manager/admin, show certain links
+              echo "<a class=\"nav-link\" href=\"/bewa-repo/announcement.php\">Add Announcement</a>";
               echo "<a class=\"nav-link\" href=\"/bewa-repo/requests/requests.php\">View Requests</a>";
               echo "<a class=\"nav-link\" href=\"/bewa-repo/employees/employeeList.php\">Employees</a>";
             } ?>
@@ -41,9 +41,8 @@ require_once "includes/dbh.inc.php";
         </div>
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <?php echo "<p class=\"nav-link\">Hello ".htmlspecialchars($_SESSION["firstName"])."</p>"    ;
-                  echo '<a class=nav-link href=account.php?empID='. $_SESSION['empID'] .'">View Account</a>';
-            ?>
+            <?php echo "<p class=\"nav-link\">Hello ".htmlspecialchars($_SESSION["firstName"])."</p>";
+                  echo '<a class=nav-link href=/bewa-repo/account.php?empID='. $_SESSION['empID'] .'">View Account</a>';?>
 
             <a class="nav-link" href="/bewa-repo/logout2.php">Log Out</a>
             <a class="nav-link" href="/bewa-repo/reset-password2.php">Change Password</a>
