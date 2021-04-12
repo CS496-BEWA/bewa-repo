@@ -70,6 +70,9 @@ if(isset($_POST["empID"]) && !empty($_POST["empID"])){
         // Prepare an update statement
         $sql = "UPDATE employee, users SET users.firstName=?, users.lastName=?, employee.wage=?, employee.hoursWorked=?, employee.hoursWorkedLastWeek=?, employee.managerStatus=?, users.isAdmin=?  WHERE empID=? AND employee.uid=users.uid";
 
+        $sql2= "SELECT * FROM users,employee WHERE users.uid=employee.uid AND empID=$empID";
+        $initResult = mysqli_query($conn,$sql2);
+
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ssiiiiii", $param_first_name, $param_last_name, $param_wage, $param_hours_1, $param_hours_2, $param_manager_status, $param_is_admin, $param_empID);
@@ -183,6 +186,20 @@ if(isset($_POST["empID"]) && !empty($_POST["empID"])){
                             <input type="text" name="firstName" class="form-control <?php echo (!empty($first_name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstName; ?>">
                             <span class="invalid-feedback"><?php echo $first_name_err;?></span>
                         </div>
+
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" name="firstName" class="form-control <?php echo (!empty($first_name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstName; ?>">
+
+                            <?php echo '<input type=\'text\' name=\'firstName\' class=\'form-control\' value="'.$firstName.'">';
+                            ?>
+
+                            <span class="invalid-feedback"><?php echo $first_name_err;?></span>
+                        </div>
+
+
+
+
 
                         <div class="form-group">
                             <label>Last Name</label>

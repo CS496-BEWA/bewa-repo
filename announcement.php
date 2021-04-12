@@ -6,6 +6,7 @@ require 'header.php';
 
 <div class="fs-3 mb-5 text-center">
 Post New Announcement
+THIS NEEDS PHP
 </div>
 
   <form action="announcement.php" method="post" class="mx-auto" style="width: 400px;">
