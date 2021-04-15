@@ -1,23 +1,7 @@
-<?php/*
-if(!isset($update)){
-$link = @mysql_connect(localhost, username, password);
-if(!$link){
-   echo('Error connecting to the database: ' . $mysql_error());
-   exit();
-}
-$db = @mysql_selectdb('496');
-if(!$db){
-   echo('Error selecting database: ' . $mysql_error());
-   exit();
-}
-$query = "SELECT empID, subject, title, text FROM announcement WHERE id = '$id'";
-$result = @mysql_query($query);
-if(!$result){
-   echo('Error selecting news item: ' . $mysql_error());
-   exit();
-}
-mysql_fetch_object($result);*/
+<?php
+
 require "includes/dbh.inc.php";
+require 'header.php';
 ?>
 
 <?php

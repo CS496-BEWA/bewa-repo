@@ -186,18 +186,18 @@ if(isset($_POST["empID"]) && !empty($_POST["empID"])){
                             <input type="text" name="firstName" class="form-control <?php echo (!empty($first_name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstName; ?>">
                             <span class="invalid-feedback"><?php echo $first_name_err;?></span>
                         </div>
-
+<!--
                         <div class="form-group">
                             <label>First Name</label>
                             <input type="text" name="firstName" class="form-control <?php echo (!empty($first_name_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $firstName; ?>">
 
-                            <?php echo '<input type=\'text\' name=\'firstName\' class=\'form-control\' value="'.$firstName.'">';
+                            <?php echo '<input type=\'text\' name=\'firstName\' class=\'form-control\' value="'.$firstName.'" placeholder="'.$firstName.'">';
                             ?>
 
                             <span class="invalid-feedback"><?php echo $first_name_err;?></span>
                         </div>
 
-
+-->
 
 
 
