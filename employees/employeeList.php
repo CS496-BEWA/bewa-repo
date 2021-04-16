@@ -75,7 +75,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['empID'] . "</td>";
+                                        echo "<td>" . $row['empID']; if($row['empID']==$_SESSION['empID']){
+                                          echo ' (you)';
+                                        }
+                                        echo "</td>";
                                         echo "<td>" . $row['firstName'] . "</td>";
                                         echo "<td>" . $row['lastName'] . "</td>";
                                         echo "<td>" . $row['wage'] . "</td>";

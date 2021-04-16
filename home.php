@@ -42,15 +42,18 @@ require 'header.php';
           <div class="row ml-3 h5 ms-5 mt-2">
             Announcement Feed
           </div><br>
-            <?php $sql = "SELECT subject, title, text FROM announcement";
+            <?php $sql = "SELECT id, subject, title, text FROM announcement";
               $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {
                 // output data of each row
                 while($row = $result->fetch_assoc()) {
-                  echo "<div class='row'>";
-                  echo "<div class='fs-5 fw-bold'>".$row["subject"]."</div><br>";
-                  echo "<div class='fs-5'>".$row["title"]."</div><br>"."<div class='fw-light'>".$row["text"]."</div><br><br>";
+                  echo "<div class='row' style='border: 2px solid black'>";
+                    echo "<div class='fs-5 fw-bold'>".$row["subject"]."</div><br>";
+                    echo "<div class='fs-5'>".$row["title"]."</div><br>"."<div class='fw-light'>".$row["text"]."</div><br>";
+                    if($_SESSION['isAdmin']){
+                      echo '<a href="deleteAnnouncement.php?id='. $row['id'] .'" title="Delete Record">Delete</a>';
+                    }
                   echo "</div>";
                 }
               } else {
