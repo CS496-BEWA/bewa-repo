@@ -1,14 +1,10 @@
 <?php
 
-
-
 namespace Textmagic\Services;
 
 use Textmagic\Services\RestException;
 use Textmagic\Services\HttpClient\HttpCurl;
 use Textmagic\Services\HttpClient\HttpStream;
-
-
 
 spl_autoload_register(function ($class) {
     $prefix = __NAMESPACE__ . '\\';
