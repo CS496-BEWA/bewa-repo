@@ -1,10 +1,7 @@
 <?php
 
-
- 
 namespace Textmagic\Services\Models; 
 
- 
 class Contacts extends BaseModel {
 
     protected $resourceName = 'contacts';
