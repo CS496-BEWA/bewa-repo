@@ -1,9 +1,6 @@
 <?php
 
-
 namespace Textmagic\Services\HttpClient;
- 
-
  
 class HttpCurl {
     
