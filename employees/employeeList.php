@@ -49,9 +49,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
                         <h2 class="pull-left">Your Employees</h2>
-                        <!-- Might not need this?
-                        <a href="addEmployee.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Add New Employee</a>
-                      -->
                     </div>
                     <?php
 
@@ -75,7 +72,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['empID']; if($row['empID']==$_SESSION['empID']){
+                                        echo "<td>" . $row['empID'];
+                                        if($row['empID']==$_SESSION['empID']){
                                           echo ' (you)';
                                         }
                                         echo "</td>";
