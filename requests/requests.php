@@ -31,7 +31,7 @@ require_once "../includes/dbh.inc.php";
     </div>
     <div class="row">
         <div class="col">
-        Start Date
+        Date Requested
         </div>
         <div class="col">
         Resolved
@@ -47,7 +47,7 @@ require_once "../includes/dbh.inc.php";
         </div>
     </div>
 
-    <?php $sql = "SELECT * FROM request, employee, users WHERE request.empID=employee.empID AND employee.uid=users.uid";
+    <?php $sql = "SELECT * FROM request, employee, users WHERE request.empID=employee.empID AND employee.uid=users.uid ORDER BY request.start_req";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {

@@ -14,6 +14,4 @@ while ($row = mysqli_fetch_array($result)) {
 }
 echo "</select>";
 
-# here username is the column of my table(userregistration)
-# it works perfectly
 ?>

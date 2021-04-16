@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2021 at 05:39 PM
+-- Generation Time: Apr 16, 2021 at 06:57 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -40,9 +40,8 @@ CREATE TABLE `announcement` (
 --
 
 INSERT INTO `announcement` (`id`, `empID`, `subject`, `text`, `title`) VALUES
-(1, 1, 'Testing', 'This is a test Announcement', 'Testing'),
-(2, 1, 'test announcement 2', 'This is a second Announcement', 'Testing 2'),
-(3, 1, 'Test Subject', 'Test Text', 'Test Title');
+(4, 6, 'UploadSubject', 'Test', 'Test'),
+(5, 6, 'Upload Subject', 'Upload Title', 'Test Text');
 
 -- --------------------------------------------------------
 
@@ -64,30 +63,12 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`empID`, `uid`, `wage`, `hoursWorked`, `hoursWorkedLastWeek`, `managerStatus`) VALUES
-(3, 22, 0, 0, 0, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `events`
---
-
-CREATE TABLE `events` (
-  `id` int(11) NOT NULL,
-  `empID` int(11) NOT NULL,
-  `title` text DEFAULT NULL,
-  `start_event` datetime NOT NULL,
-  `end_event` datetime NOT NULL,
-  `color` varchar(191) DEFAULT NULL,
-  `text_color` varchar(191) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `events`
---
-
-INSERT INTO `events` (`id`, `empID`, `title`, `start_event`, `end_event`, `color`, `text_color`) VALUES
-(2, 0, 'Project 1', '2021-02-16 08:30:00', '2021-02-16 09:00:00', '#6453e9', '#ffffff');
+(3, 22, 10, 100, 100, 1),
+(4, 23, 0, 0, 0, 1),
+(5, 24, 0, 0, 0, 0),
+(6, 25, 10, 100, 40, 1),
+(7, 26, 0, 0, 0, 1),
+(8, 27, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -99,8 +80,9 @@ CREATE TABLE `request` (
   `rid` int(11) NOT NULL,
   `empID` int(11) NOT NULL,
   `reqType` tinyint(1) NOT NULL,
-  `start_req` datetime NOT NULL,
-  `end_req` datetime NOT NULL,
+  `timeOffID` int(11) DEFAULT NULL,
+  `shiftSwapID` int(11) DEFAULT NULL,
+  `start_req` datetime NOT NULL DEFAULT current_timestamp(),
   `resolved` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -108,8 +90,43 @@ CREATE TABLE `request` (
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`rid`, `empID`, `reqType`, `start_req`, `end_req`, `resolved`) VALUES
-(1, 1, 0, '2021-04-01 12:00:00', '2021-04-03 12:00:00', 0);
+INSERT INTO `request` (`rid`, `empID`, `reqType`, `timeOffID`, `shiftSwapID`, `start_req`, `resolved`) VALUES
+(38, 6, 1, 48, NULL, '2021-04-15 22:45:31', 1),
+(39, 6, 1, 49, NULL, '2021-04-15 22:45:49', 0),
+(40, 6, 1, 50, NULL, '2021-04-15 22:47:52', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shiftswaprequests`
+--
+
+CREATE TABLE `shiftswaprequests` (
+  `id` int(11) NOT NULL,
+  `empID1` int(11) NOT NULL,
+  `empID2` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `timeoffrequests`
+--
+
+CREATE TABLE `timeoffrequests` (
+  `timeOffID` int(11) NOT NULL,
+  `startTime` date NOT NULL,
+  `endTime` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `timeoffrequests`
+--
+
+INSERT INTO `timeoffrequests` (`timeOffID`, `startTime`, `endTime`) VALUES
+(48, '2021-04-14', '2021-04-16'),
+(49, '2021-04-01', '2021-04-30'),
+(50, '2021-04-17', '2021-04-24');
 
 -- --------------------------------------------------------
 
@@ -132,13 +149,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`uid`, `username`, `password`, `created_at`, `isAdmin`, `firstName`, `lastName`) VALUES
-(1, 'zdilliha@gmail.com', '$2y$10$mhnKVRfUjTW1QyQJo8NCWezcBzy8aAXIA2avATOZDm0Sx3vXPkFlK', '2021-03-16 22:02:43', 1, '', ''),
-(2, 'admin', '$2y$10$erl.ERrbdWwpPDJjVqaPpunBFNc/7ceDGlj2845SZJzqKP/NrrNey', '2021-03-16 23:02:18', 1, 'adminFirstName', 'adminLastName'),
-(3, 'zach1', '$2y$10$1Ea43sr3P6BmKPBeXHJsVejPxlIFzgF3wfyv/DAo4fbBVTl/UWxsi', '2021-03-17 12:47:45', 0, '', ''),
-(4, 'testingNames', '$2y$10$.VARZpfNlotHs56PEulLoOjQkWsWf12T2PwQK4mQlK0NGfz3YbVE.', '2021-03-30 23:50:56', 0, 'First Name', 'Last Name'),
-(20, 'admin2', '$2y$10$EoOSibb7AM0aWInuRfKtIO7v/BEnKR6iNl5JKGx/o6S/I4J9N86Ru', '2021-04-07 20:06:27', 1, 'test', 'updatethree'),
-(21, 'admin3', '$2y$10$CW0IhpdjkPIuSRa9fNQapeB9FlgES2MxWkmFJY.L9PS42TvDQr.aK', '2021-04-07 22:27:53', 0, 'admin3', 'admin3'),
-(22, 'testingAdminAdd', '$2y$10$uxvj1bEbsUN4iTVxgu8LPOAS2332JOQ/N13hrNrldTZEWf170bEKW', '2021-04-09 21:35:07', 1, 'test', 'manager');
+(22, 'testingAdminAdd', '$2y$10$uxvj1bEbsUN4iTVxgu8LPOAS2332JOQ/N13hrNrldTZEWf170bEKW', '2021-04-09 21:35:07', 1, 'Testing Space', 'Last Name'),
+(23, 'test5', '$2y$10$SudYR9NJ1so4AKUrWrv/a.8bvXRV7lmMk0NucebZpsFCFBsbgE7iu', '2021-04-10 17:31:13', 1, 'test', 'last'),
+(24, 'employee', '$2y$10$4j1ApJt2U/idZ6Sqwg8Pdeoxc9Tpc72hzkRcmVPl5Zw7B.KLnjkJu', '2021-04-11 15:35:40', 0, 'Employee', 'Employee'),
+(25, 'admin2', '$2y$10$KRKHMX4oFL43uBhOKN0tbuHlyEC8JPZY4zJHP.SC.Hu74SziG5ZfG', '2021-04-11 15:56:53', 1, 'Zach', 'Dilliha'),
+(26, 'admin3', '$2y$10$wb1KXVstIehFEk1Xni1TNu5VULjdB2okmNZxcu5E/zy3fFGoIWdPm', '2021-04-11 16:00:19', 1, 'AdminThree', 'Admin3'),
+(27, 'jhn22316', '$2y$10$TekcMDQRnCBhe5wyLiJjxOtyvx9AlcBAsj7GLhz9NAJZG3Ey76BXS', '2021-04-11 16:34:37', 1, 'Zach', 'Dilliha');
 
 --
 -- Indexes for dumped tables
@@ -148,7 +164,8 @@ INSERT INTO `users` (`uid`, `username`, `password`, `created_at`, `isAdmin`, `fi
 -- Indexes for table `announcement`
 --
 ALTER TABLE `announcement`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `empID` (`empID`);
 
 --
 -- Indexes for table `employee`
@@ -158,12 +175,27 @@ ALTER TABLE `employee`
   ADD KEY `uid` (`uid`);
 
 --
--- Indexes for table `events`
+-- Indexes for table `request`
 --
-ALTER TABLE `events`
+ALTER TABLE `request`
+  ADD PRIMARY KEY (`rid`),
+  ADD KEY `empID` (`empID`),
+  ADD KEY `shiftSwapID` (`shiftSwapID`),
+  ADD KEY `timeOffID` (`timeOffID`);
+
+--
+-- Indexes for table `shiftswaprequests`
+--
+ALTER TABLE `shiftswaprequests`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `empID_2` (`empID`),
-  ADD KEY `empID` (`empID`);
+  ADD KEY `empID1` (`empID1`),
+  ADD KEY `empID2` (`empID2`);
+
+--
+-- Indexes for table `timeoffrequests`
+--
+ALTER TABLE `timeoffrequests`
+  ADD PRIMARY KEY (`timeOffID`);
 
 --
 -- Indexes for table `users`
@@ -180,35 +212,61 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `empID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `empID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `events`
+-- AUTO_INCREMENT for table `request`
 --
-ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE `request`
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `shiftswaprequests`
+--
+ALTER TABLE `shiftswaprequests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `timeoffrequests`
+--
+ALTER TABLE `timeoffrequests`
+  MODIFY `timeOffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `announcement`
+--
+ALTER TABLE `announcement`
+  ADD CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`empID`) REFERENCES `employee` (`empID`);
+
+--
 -- Constraints for table `employee`
 --
 ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`);
+
+--
+-- Constraints for table `request`
+--
+ALTER TABLE `request`
+  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`empID`) REFERENCES `employee` (`empID`),
+  ADD CONSTRAINT `request_ibfk_2` FOREIGN KEY (`shiftSwapID`) REFERENCES `shiftswaprequests` (`id`),
+  ADD CONSTRAINT `request_ibfk_3` FOREIGN KEY (`timeOffID`) REFERENCES `timeoffrequests` (`timeOffID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
