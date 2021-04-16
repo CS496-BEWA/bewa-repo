@@ -1,12 +1,9 @@
 <?php
 
-
- 
 namespace Textmagic\Services\Models; 
  
 use Textmagic\Services\TextmagicRestClient;
 
- 
 class BaseModel {
 
     /**
