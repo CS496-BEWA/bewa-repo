@@ -1,9 +1,6 @@
 <?php
-
  
 namespace Textmagic\Services; 
- 
-
  
 class RestException extends \ErrorException {
 
