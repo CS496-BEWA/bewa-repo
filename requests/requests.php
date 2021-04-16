@@ -34,9 +34,6 @@ require_once "../includes/dbh.inc.php";
         Start Date
         </div>
         <div class="col">
-        End Date
-        </div>
-        <div class="col">
         Resolved
         </div>
         <div class="col">
@@ -44,6 +41,9 @@ require_once "../includes/dbh.inc.php";
         </div>
         <div class="col">
         Request Type
+        </div>
+        <div class="col">
+        Go To
         </div>
     </div>
 
@@ -59,9 +59,6 @@ require_once "../includes/dbh.inc.php";
                     echo $row["start_req"];
                   echo "</div><br>";
 
-                  echo "<div class='col fs-5'>";
-                    echo $row["end_req"];
-                  echo "</div><br>";
 
                   echo "<div class='col fs-5'>";
                     if ($row["resolved"] == 0) {
@@ -82,7 +79,14 @@ require_once "../includes/dbh.inc.php";
                       }else{
                         echo "Time Off";
                       }
-                    ;
+                  echo "</div><br>";
+
+
+
+                  echo "<div class='col fs-5'>";
+                    echo '<a href="viewRequest.php?rid='. $row['rid'] .'" class="mr-3" title="View Record">View</a>';
+                  echo "</div><br>";
+
                   echo "</div><br><br>";
 
                 echo "</div>";
