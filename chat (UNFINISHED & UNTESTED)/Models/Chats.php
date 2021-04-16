@@ -1,10 +1,6 @@
 <?php
-
-
  
 namespace Textmagic\Services\Models; 
- 
-
  
 class Chats extends BaseModel {
 
