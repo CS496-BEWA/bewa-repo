@@ -1,13 +1,6 @@
 <?php
 
-/**
- * This file is part of the TextmagicRestClient package.
- *
- * Copyright (c) 2015 TextMagic Ltd. All rights reserved.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
 
 namespace Textmagic\Services;
 
@@ -15,9 +8,7 @@ use Textmagic\Services\RestException;
 use Textmagic\Services\HttpClient\HttpCurl;
 use Textmagic\Services\HttpClient\HttpStream;
 
-/**
- * @author Denis <denis@textmagic.biz>
- */
+
 
 spl_autoload_register(function ($class) {
     $prefix = __NAMESPACE__ . '\\';
