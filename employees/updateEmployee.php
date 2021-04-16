@@ -139,15 +139,10 @@ if(isset($_POST["empID"]) && !empty($_POST["empID"])){
                     header("location: error.php");
                     exit();
                 }
-
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
         }
-
-        // Close statement
-
-
         // Close connection
         mysqli_close($conn);
     }  else{

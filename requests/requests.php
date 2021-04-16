@@ -64,7 +64,9 @@ require_once "../includes/dbh.inc.php";
                     if ($row["resolved"] == 0) {
                         echo "No";
                     }
-                    else {
+                    elseif($row["resolved"] == 2) {
+                      echo "Rejected";
+                    }else{
                       echo "Yes";
                     }
                   echo "</div><br>";
