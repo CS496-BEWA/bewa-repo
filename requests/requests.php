@@ -29,7 +29,7 @@ require_once "../includes/dbh.inc.php";
     <div class="row fs-3 border-bottom border-3 border-dark">
     Requests
     </div>
-    <div class="row">
+    <div class="row mb-2">
         <div class="col">
         Date Requested
         </div>
@@ -53,11 +53,18 @@ require_once "../includes/dbh.inc.php";
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                echo "<div class='row'>";
 
+                if ($row["resolved"] == 0) {
+                  echo "<div class='row fw-bold mb-2'>";
+                }
+                elseif($row["resolved"] == 2) {
+                  echo "<div class='row fst-italic mb-2'>";
+                }else{
+                  echo "<div class='row mb-2'>";
+                }
                   echo "<div class='col fs-5'>";
                     echo $row["start_req"];
-                  echo "</div><br>";
+                  echo "</div>";
 
 
                   echo "<div class='col fs-5'>";
@@ -69,11 +76,11 @@ require_once "../includes/dbh.inc.php";
                     }else{
                       echo "Yes";
                     }
-                  echo "</div><br>";
+                  echo "</div>";
 
                   echo "<div class='col fs-5'>";
                     echo $row["firstName"]." ".$row['lastName'];
-                  echo "</div><br>";
+                  echo "</div>";
 
                   echo "<div class='col fs-5'>";
                       if($row["reqType"]==0){
@@ -81,17 +88,16 @@ require_once "../includes/dbh.inc.php";
                       }else{
                         echo "Time Off";
                       }
-                  echo "</div><br>";
+                  echo "</div>";
 
 
 
                   echo "<div class='col fs-5'>";
                     echo '<a href="viewRequest.php?rid='. $row['rid'] .'" class="mr-3" title="View Record">View</a>';
-                  echo "</div><br>";
+                  echo "</div>";
 
-                  echo "</div><br><br>";
+                  echo "</div>";
 
-                echo "</div>";
             }
         } else {
             echo "0 results";
