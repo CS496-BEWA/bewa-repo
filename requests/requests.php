@@ -40,14 +40,14 @@ require_once "../includes/dbh.inc.php";
         Resolved
         </div>
         <div class="col">
-        Employee ID
+        Employee
         </div>
         <div class="col">
         Request Type
         </div>
     </div>
 
-    <?php $sql = "SELECT * FROM request";
+    <?php $sql = "SELECT * FROM request, employee, users WHERE request.empID=employee.empID AND employee.uid=users.uid";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -73,7 +73,7 @@ require_once "../includes/dbh.inc.php";
                   echo "</div><br>";
 
                   echo "<div class='col fs-5'>";
-                    echo $row["empID"];
+                    echo $row["firstName"]." ".$row['lastName'];
                   echo "</div><br>";
 
                   echo "<div class='col fs-5'>";
