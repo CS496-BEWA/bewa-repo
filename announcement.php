@@ -88,19 +88,19 @@ Post New Announcement
                 <label>Title</label>
                 <input type="title" name="text" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $title; ?>">
                 <span class="invalid-feedback"><?php echo $title_err;?></span>
-            </div>
+            </div><br>
 
             <div class="form-group">
                 <label>Subject</label>
                 <input type="text" name="subject" class="form-control <?php echo (!empty($subject_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $subject; ?>">
                 <span class="invalid-feedback"><?php echo $subject_err;?></span>
-            </div>
+            </div><br>
 
             <div class="form-group">
                 <label>Text</label>
                 <input type="text" name="title" class="form-control <?php echo (!empty($text_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $text; ?>">
                 <span class="invalid-feedback"><?php echo $text_err;?></span>
-            </div>
+            </div><br>
 
             <div class="form-group">
                 <input type="hidden" name="empID" value="<?=$empID?>">
