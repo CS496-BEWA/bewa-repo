@@ -134,12 +134,19 @@ if(isset($_POST['rid']) && !empty($_POST['rid'])){
                            }?></b></p>
                        </div>
 
-
-
-
-
+                       <div class="form-group">
                          <input type="radio" name="resolved" value="1">Approve</input>
                          <input type="radio" name="resolved" value="2">Reject</input>
+                       </div>
+                       <br>
+
+
+
+
+
+
+
+
                          <input type="hidden" name="rid" value="<?=$rid?>">
                          <input type="submit" class="btn btn-primary" value="Submit">
                          <a href="requests.php" class="btn btn-secondary ml-2">Cancel</a>

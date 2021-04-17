@@ -29,8 +29,6 @@ require_once "includes/dbh.inc.php";
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <!--<a class="nav-link" href="#">Workplace Policy</a>-->
-            <!--<a class="nav-link" href="/bewa-repo/PHPTesting/testing4/Calendar/index.php">Calendar</a>-->
             <?php if ($_SESSION["isAdmin"]==1) {
               //if the logged-in user is a manager/admin, show certain links
               echo "<a class=\"nav-link\" href=\"/bewa-repo/announcement.php\">Make Announcement</a>";

@@ -17,23 +17,6 @@ require 'header.php';
           <?php } ?>
         </div>
       </div>
-<!--
-      <div class="row">
-        <div class="col-9 mb-3">
-          <div class="row">
-            <div class="col-4">
-              <input type="text" class="form-control" style="width:200px" id="startDateInput">
-            </div>
-            <div class="col-3">
-              <input type="text" class="form-control" style="width:200px" id="endDateInput">
-            </div>
-            <div class="col">
-              <button type="button" class="btn btn-success">Submit Request</button>
-            </div>
-          </div>
-        </div>
-      </div>
--->
 
       <div class="row">
         <div class="col-9">
