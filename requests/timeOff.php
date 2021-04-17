@@ -59,11 +59,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
             exit();
           }else{
             echo "Oops! Something went wrong.";
-            echo "<br>".$param_empID."<br>";
-            echo "<br>".$param_reqType."<br>";
-            echo "<br>".$param_toID."<br>";
-            //echo "<br>".$param_start_time."<br>";
-            echo "<br>".$param_resolved."<br>";
+
           }
 
         }
