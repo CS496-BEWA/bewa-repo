@@ -36,7 +36,9 @@ require_once "includes/dbh.inc.php";
               echo "<a class=\"nav-link\" href=\"/bewa-repo/announcement.php\">Make Announcement</a>";
               echo "<a class=\"nav-link\" href=\"/bewa-repo/requests/requests.php\">View Requests</a>";
               echo "<a class=\"nav-link\" href=\"/bewa-repo/employees/employeeList.php\">Employee Info</a>";
-            } ?>
+            }
+            echo "<a class=\"nav-link\" href=\"/bewa-repo/requests/myRequests.php\">My Requests</a>";
+            ?>
           </div>
         </div>
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
