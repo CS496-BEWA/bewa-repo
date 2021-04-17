@@ -47,7 +47,11 @@ require_once "../includes/dbh.inc.php";
         </div>
     </div>
 
-    <?php $sql = "SELECT * FROM request, employee, users WHERE request.empID=employee.empID AND employee.uid=users.uid ORDER BY request.start_req";
+    <?php
+    $sqlTest = 'request.start_req';
+
+
+    $sql = "SELECT * FROM request, employee, users WHERE request.empID=employee.empID AND employee.uid=users.uid ORDER BY $sqlTest";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
