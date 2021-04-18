@@ -91,7 +91,7 @@ if(empty($shift_err)){
                              <?php
                              echo "<select name='empID2'>";
                              while ($row = mysqli_fetch_array($result)) {
-                               //User can't request to swap shifts with themselves 
+                               //User can't request to swap shifts with themselves
                                   if($row['empID'] != $_SESSION['empID']){
                                     echo "<option value='" . $row['empID']."'>" . $row['firstName'] ." ".$row['lastName']."</option>";
                                   }
@@ -101,7 +101,7 @@ if(empty($shift_err)){
 
                          <input type="hidden" name="empID" value="<?=$empID?>">
                          <input type="submit" class="btn btn-primary" value="Submit">
-                         <a href="employeeList.php" class="btn btn-secondary ml-2">Cancel</a>
+                         <a href="../home.php" class="btn btn-secondary ml-2">Cancel</a>
                      </form>
                  </div>
              </div>

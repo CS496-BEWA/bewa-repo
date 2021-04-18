@@ -114,7 +114,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
                          <input type="hidden" name="empID" value="<?=$empID?>">
                          <input type="submit" class="btn btn-primary" value="Submit">
-                         <a href="employeeList.php" class="btn btn-secondary ml-2">Cancel</a>
+                         <a href="../home.php" class="btn btn-secondary ml-2">Cancel</a>
                      </form>
                  </div>
              </div>
