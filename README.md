@@ -34,7 +34,11 @@ The chat feature is currently non-functional, but would allow users to communica
 PHP 8.0.2
 
 SQL 2019
+
 HTML 5
+
 ECMAScript 2016
+
 Google Calender API
+
 TextMagic API
