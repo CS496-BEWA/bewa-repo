@@ -7,19 +7,19 @@ To install, run, and use the BEWA program, first download the BEWA file director
 
 # USE
 Adding Users:
-To add users, navigate to teh Signup page, and enter the rrequested and nessecary information. After doing so, the new user will be added to the employee database. If      the new employee is a manager, they will have to be promoted by an admin.
+To add users, navigate to the Signup page, and enter the rrequested and necessary information. After doing so, the new user will be added to the employee database. If      the new employee is a manager, they will have to be promoted by an admin.
 
 Promoting Users:
 To promote or demote a user, an admin will navigate to the "edit user" page and do so manually.
 
 Announcements:
-To create an announcement, navigate to the "announcement" page and fill out the required feilds, the finished announcement will show on the main screen. To delete an announcement, navigate to "deleteAnnouncement" and choose the announcement you wish to delete.
+To create an announcement, navigate to the "announcement" page and fill out the required fields, the finished announcement will show on the main screen. To delete an announcement, navigate to "deleteAnnouncement" and choose the announcement you wish to delete.
 
 Employees:
 Logged in as a manager, you can add, delete, look at lists of, and approve or deny employee requests by navigating to "addEmployee", "deleteEmployee", "employeeList", and "updateEmployee"
 
 Resetting Password:
-Simply navigate to the "resetPassword" page and fill in the nessecary information
+Simply navigate to the "resetPassword" page and fill in the necessary information
 
 Requests:
 Logged in as any user, navigating to "shiftSwap" or "timeOff" will let you request to swap shifts with another employee, or request time off. Users can also view their requests in "myRequests". Managers and admins can accept or deny requests in "viewRequest"
