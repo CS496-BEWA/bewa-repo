@@ -51,7 +51,7 @@ require_once "../includes/dbh.inc.php";
     $sqlTest = 'request.start_req';
 
 
-    $sql = "SELECT * FROM request, employee, users WHERE request.empID=employee.empID AND employee.uid=users.uid ORDER BY $sqlTest";
+    $sql = "SELECT * FROM request, employee, users WHERE request.empID=employee.empID AND employee.uid=users.uid ORDER BY $sqlTest DESC";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
