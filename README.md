@@ -8,23 +8,31 @@ To install, run, and use the BEWA program, first download the BEWA file director
 # USE
 Adding Users:
 To add users, navigate to teh Signup page, and enter the rrequested and nessecary information. After doing so, the new user will be added to the employee database. If      the new employee is a manager, they will have to be promoted by an admin.
+
 Promoting Users:
 To promote or demote a user, an admin will navigate to the "edit user" page and do so manually.
+
 Announcements:
 To create an announcement, navigate to the "announcement" page and fill out the required feilds, the finished announcement will show on the main screen. To delete an announcement, navigate to "deleteAnnouncement" and choose the announcement you wish to delete.
+
 Employees:
 Logged in as a manager, you can add, delete, look at lists of, and approve or deny employee requests by navigating to "addEmployee", "deleteEmployee", "employeeList", and "updateEmployee"
+
 Resetting Password:
 Simply navigate to the "resetPassword" page and fill in the nessecary information
+
 Requests:
 Logged in as any user, navigating to "shiftSwap" or "timeOff" will let you request to swap shifts with another employee, or request time off. Users can also view their requests in "myRequests". Managers and admins can accept or deny requests in "viewRequest"
+
 Calender:
 Using the Google calender API, employees can view and track their shifts, hours worked, and current pay based on salary. These are governed by the "delete", "getevent", "insert", "load", and "update" functions baked into the API.
+
 Chat:
 The chat feature is currently non-functional, but would allow users to communicate between each other for easy communication for people trying to swap shifts or find someone to cover for them.
 
 # Repositories and Code Bases Used
 PHP 8.0.2
+
 SQL 2019
 HTML 5
 ECMAScript 2016
