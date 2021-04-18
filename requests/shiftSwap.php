@@ -91,7 +91,10 @@ if(empty($shift_err)){
                              <?php
                              echo "<select name='empID2'>";
                              while ($row = mysqli_fetch_array($result)) {
-                                 echo "<option value='" . $row['empID']."'>" . $row['firstName'] ." ".$row['lastName']."</option>";
+                               //User can't request to swap shifts with themselves 
+                                  if($row['empID'] != $_SESSION['empID']){
+                                    echo "<option value='" . $row['empID']."'>" . $row['firstName'] ." ".$row['lastName']."</option>";
+                                  }
                              }
                              echo "</select>";?>
                          </div>
