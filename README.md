@@ -7,7 +7,7 @@ To install, run, and use the BEWA program, first download the BEWA file director
 
 # USE
 Adding Users:
-To add users, navigate to the Signup page, and enter the rrequested and necessary information. After doing so, the new user will be added to the employee database. If      the new employee is a manager, they will have to be promoted by an admin.
+To add users, navigate to the Signup page, and enter the requested and necessary information. After doing so, the new user will be added to the employee database. If the new employee is a manager, they will have to be promoted by an admin.
 
 Promoting Users:
 To promote or demote a user, an admin will navigate to the "edit user" page and do so manually.
@@ -24,8 +24,8 @@ Simply navigate to the "resetPassword" page and fill in the necessary informatio
 Requests:
 Logged in as any user, navigating to "shiftSwap" or "timeOff" will let you request to swap shifts with another employee, or request time off. Users can also view their requests in "myRequests". Managers and admins can accept or deny requests in "viewRequest"
 
-Calender:
-Using the Google calender API, employees can view and track their shifts, hours worked, and current pay based on salary. These are governed by the "delete", "getevent", "insert", "load", and "update" functions baked into the API.
+Calendar:
+Using the Google Calendar API, employees can view and track their shifts, hours worked, and current pay based on salary. These are governed by the "delete", "getevent", "insert", "load", and "update" functions baked into the API.
 
 Chat:
 The chat feature is currently non-functional, but would allow users to communicate between each other for easy communication for people trying to swap shifts or find someone to cover for them.
@@ -39,6 +39,6 @@ HTML 5
 
 ECMAScript 2016
 
-Google Calender API
+Google Calendar API
 
 TextMagic API
