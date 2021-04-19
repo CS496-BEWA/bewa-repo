@@ -57,18 +57,52 @@ if(isset($_POST['rid']) && !empty($_POST['rid'])){
           $timeOffID = $row['timeOffID'];
           $ssID = $row['shiftSwapID'];
 
-          /*
+          
           if($timeOffID != NULL){
             //if the request was for time off, grab data from that table
-            $sql2 = "SELECT * FROM timeoffrequests WHERE timeOffID = ?";
-            if($stmt2 = mysqli_prepare($$conn,$sql)){
+            $sql2 = "SELECT startTime, endTime FROM timeoffrequests WHERE timeOffID = ?";
+            if($stmt2 = mysqli_prepare($conn,$sql2)){
+                mysqli_stmt_bind_param($stmt2, "i", $param_timeOffID);
 
-            }
+                //Set parameter
+                $param_timeOffID = $timeOffID;
+          
+                if(mysqli_stmt_execute($stmt2)){
+                  $result2 = mysqli_stmt_get_result($stmt2);
+          
+                  if(mysqli_num_rows($result2)==1){
+                    $row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
+          
+                    $startTime = $row2['startTime'];
+                    $endTime = $row2['endTime'];
+                  }
+                }
+              }
 
           }else {
             //the data was from Shift swap, so grab that data
-          }*/
+            //if the request was for time off, grab data from that table
+            $sql2 = "SELECT empID2, shiftDate FROM shiftswaprequests WHERE id = ?";
+            if($stmt2 = mysqli_prepare($conn,$sql2)){
+                mysqli_stmt_bind_param($stmt2, "i", $param_id);
+
+                //Set parameter
+                $param_id = $ssID;
+          
+                if(mysqli_stmt_execute($stmt2)){
+                  $result2 = mysqli_stmt_get_result($stmt2);
+          
+                  if(mysqli_num_rows($result2)==1){
+                    $row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
+          
+                    $shiftDate = $row2['shiftDate'];
+                    $empID2 = $row2['empID2'];
+                  }
+                }
+              }
+          }
           mysqli_stmt_close($stmt);
+          mysqli_stmt_close($stmt2);
         }else {
           header("location: error.php");
           exit();
@@ -126,11 +160,22 @@ if(isset($_POST['rid']) && !empty($_POST['rid'])){
                        </div>
 
                        <div class="form-group">
-                           <label>Request ID TEST</label>
+                           <label>Request ID</label>
                            <p><b><?php if($timeOffID==NULL){
                              echo $ssID;
                            }else{
                              echo $timeOffID;
+                           }?></b></p>
+                       </div>
+
+                       <div class="form-group">
+                           <label>Requested Days Off</label>
+                           <p><b><?php if($timeOffID != NULL){
+                             echo $row2['startTime'];
+                             echo ' - ';
+                             echo $row2['endTime'];
+                           }else{
+                            echo $row2['shiftDate'];
                            }?></b></p>
                        </div>
 
