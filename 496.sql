@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2021 at 03:43 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.30
+-- Generation Time: Apr 19, 2021 at 05:13 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,7 +40,9 @@ CREATE TABLE `announcement` (
 --
 
 INSERT INTO `announcement` (`id`, `empID`, `subject`, `text`, `title`) VALUES
-(4, 6, 'UploadSubject', 'Test', 'Test');
+(12, 10, 'Schedule', 'A new schedule has been posted', 'Shift Schedule Posted'),
+(13, 10, 'Boss', 'The Distict Manager is coming today please be on your best behavior', 'District Manager Coming Today'),
+(14, 10, 'Work Outfit', 'Please wear green on Friday as it is the fiftieth anniversary of the comapny', 'Wear Green on Friday');
 
 -- --------------------------------------------------------
 
@@ -62,12 +64,12 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`empID`, `uid`, `wage`, `hoursWorked`, `hoursWorkedLastWeek`, `managerStatus`) VALUES
-(3, 22, 9, 9, 9, 0),
-(4, 23, 0, 0, 0, 1),
 (6, 25, 10, 100, 40, 1),
-(7, 26, 6, 6, 6, 0),
-(8, 27, 0, 0, 0, 1),
-(9, 28, 0, 0, 0, 0);
+(10, 29, 10, 90, 30, 1),
+(11, 30, 10, 95, 32, 1),
+(12, 31, 9, 87, 30, 0),
+(13, 32, 8, 120, 45, 0),
+(14, 33, 8, 50, 17, 0);
 
 -- --------------------------------------------------------
 
@@ -90,12 +92,13 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`rid`, `empID`, `reqType`, `timeOffID`, `shiftSwapID`, `start_req`, `resolved`) VALUES
-(38, 6, 1, 48, NULL, '2021-04-15 22:45:31', 1),
+(38, 6, 1, 48, NULL, '2021-04-15 22:45:31', 2),
 (39, 6, 1, 49, NULL, '2021-04-15 22:45:49', 1),
 (40, 6, 1, 50, NULL, '2021-04-15 22:47:52', 2),
-(41, 6, 1, 51, NULL, '2021-04-16 14:04:26', 0),
+(41, 6, 1, 51, NULL, '2021-04-16 14:04:26', 1),
 (42, 6, 0, NULL, 1, '2021-04-16 19:55:35', 1),
-(43, 9, 0, NULL, 2, '2021-04-16 20:29:37', 0);
+(44, 10, 0, NULL, 3, '2021-04-18 16:32:37', 0),
+(45, 10, 1, 52, NULL, '2021-04-18 16:33:23', 0);
 
 -- --------------------------------------------------------
 
@@ -116,7 +119,8 @@ CREATE TABLE `shiftswaprequests` (
 
 INSERT INTO `shiftswaprequests` (`id`, `empID1`, `empID2`, `shiftDate`) VALUES
 (1, 6, 3, '2021-04-15'),
-(2, 9, 3, '2021-04-21');
+(2, 9, 3, '2021-04-21'),
+(3, 10, 6, '2021-05-25');
 
 -- --------------------------------------------------------
 
@@ -138,7 +142,8 @@ INSERT INTO `timeoffrequests` (`timeOffID`, `startTime`, `endTime`) VALUES
 (48, '2021-04-14', '2021-04-16'),
 (49, '2021-04-01', '2021-04-30'),
 (50, '2021-04-17', '2021-04-24'),
-(51, '2021-04-13', '2021-04-17');
+(51, '2021-04-13', '2021-04-17'),
+(52, '2021-05-01', '2021-05-08');
 
 -- --------------------------------------------------------
 
@@ -166,7 +171,12 @@ INSERT INTO `users` (`uid`, `username`, `password`, `created_at`, `isAdmin`, `fi
 (25, 'admin2', '$2y$10$KRKHMX4oFL43uBhOKN0tbuHlyEC8JPZY4zJHP.SC.Hu74SziG5ZfG', '2021-04-11 15:56:53', 1, 'Zach', 'Dilliha'),
 (26, 'admin3', '$2y$10$wb1KXVstIehFEk1Xni1TNu5VULjdB2okmNZxcu5E/zy3fFGoIWdPm', '2021-04-11 16:00:19', 0, 'Test', 'Test'),
 (27, 'jhn22316', '$2y$10$TekcMDQRnCBhe5wyLiJjxOtyvx9AlcBAsj7GLhz9NAJZG3Ey76BXS', '2021-04-11 16:34:37', 1, 'Zach', 'Dilliha'),
-(28, 'employee', '$2y$10$iuY91TIh2aKnyrtuFKvtJOvS52ullNjOpgeTE1GIeu1OuLFEPiJ6K', '2021-04-16 20:29:14', 0, 'EmployeeTest', 'EmployeeTest');
+(28, 'employee', '$2y$10$iuY91TIh2aKnyrtuFKvtJOvS52ullNjOpgeTE1GIeu1OuLFEPiJ6K', '2021-04-16 20:29:14', 0, 'EmployeeTest', 'EmployeeTest'),
+(29, 'eli', '$2y$10$r/uyxrqEOA0dWLErSemPjeaVUT4XfpcYEXX.N2kXlCKtMbDcauBAO', '2021-04-18 16:06:42', 1, 'Eli', 'Estes'),
+(30, '1', '$2y$10$X/PDjMSjya9qDl/z.e8GueUOFJl5K.O1CaY7Yxzdm58.icR2TIkWO', '2021-04-18 22:04:31', 1, 'Clay', 'Grant'),
+(31, '2', '$2y$10$BQ81K1c9DWViQDtkWoIzgeaIYu98OnGv5m0zAtU3UvBuv6.yXvI7G', '2021-04-18 22:07:22', 0, 'John', 'Smith'),
+(32, '3', '$2y$10$4ieMQKmDsSLUS8WGPBwP2OlQ0t9vWqW3bLAE7hAbr2YOYkilH8e46', '2021-04-18 22:07:45', 0, 'Jenny', 'Gubbins'),
+(33, '4', '$2y$10$w4F3OUaqBfz9/p8N4w1z8OiXN22rGkzZ3qZCH1mYR9yafxyi938sa', '2021-04-18 22:08:24', 0, 'Brittany', 'Jostlin');
 
 --
 -- Indexes for dumped tables
@@ -224,37 +234,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `empID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `empID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `shiftswaprequests`
 --
 ALTER TABLE `shiftswaprequests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `timeoffrequests`
 --
 ALTER TABLE `timeoffrequests`
-  MODIFY `timeOffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `timeOffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Constraints for dumped tables
