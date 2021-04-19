@@ -180,7 +180,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 <input type="text" name="lastName" class="form-control" value="<?php echo $lastName; ?>">
                 <span class="help-block"><?php echo $last_err; ?></span>
             </div>
-            <label>FOR TESTING PURPOSES ONLY</label>
             <div class="form-group">
                 <label>Manager</label>
                 <input type="radio" name="managerStatus" value="1" checked>

@@ -86,7 +86,7 @@ Post New Announcement
   <form action="announcement.php" method="post" class="mx-auto" style="width: 400px;">
             <div class="form-group">
                 <label>Title</label>
-                <input type="text" name="title" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $title; ?>">
+                <input type="text" name="title" class="form-control <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $title; ?>">                
                 <span class="invalid-feedback"><?php echo $title_err;?></span>
             </div><br>
 
@@ -98,7 +98,7 @@ Post New Announcement
 
             <div class="form-group">
                 <label>Text</label>
-                <input type="text" name="text" class="form-control <?php echo (!empty($text_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $text; ?>">
+                <input type="text" name="text" class="form-control <?php echo (!empty($text_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $text; ?>">                
                 <span class="invalid-feedback"><?php echo $text_err;?></span>
             </div><br>
 
