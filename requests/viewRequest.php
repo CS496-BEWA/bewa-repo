@@ -81,7 +81,6 @@ if(isset($_POST['rid']) && !empty($_POST['rid'])){
 
           }else {
             //the data was from Shift swap, so grab that data
-            //if the request was for time off, grab data from that table
             $sql2 = "SELECT * FROM shiftswaprequests, employee, users WHERE id = ? AND shiftswaprequests.empID2=employee.empID AND employee.uid = users.uid";
             if($stmt2 = mysqli_prepare($conn,$sql2)){
                 mysqli_stmt_bind_param($stmt2, "i", $param_id);
@@ -177,7 +176,7 @@ if(isset($_POST['rid']) && !empty($_POST['rid'])){
                                echo $row2['endTime'];
                                echo '</b></p>';
                            }else{
-                             echo '<label>Requested Shift to be Swapped With: <b>'.$row2['firstName']." ".$row['lastName'].'</b></label><p><b>';
+                             echo '<label>Requested Shift to be Swapped With: <b>'.$row2['firstName']." ".$row2['lastName'].'</b></label><p><b>';
                             echo $row2['shiftDate'];
                             echo '</b></p>';
                            }?>
